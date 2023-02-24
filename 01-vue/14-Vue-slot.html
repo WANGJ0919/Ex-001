@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h3>コンポーネント</h3>
+            <slot></slot>
+        </div>
+    </template>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {},
+        components : {
+            cpn : {
+                template : '#cpn',
+
+            }
+        },
+        methods: {}
+     });
+    </script>
+</body>
+</html>

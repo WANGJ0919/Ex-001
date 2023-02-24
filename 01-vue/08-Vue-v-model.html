@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <div>
+            <input type="text" v-model="txt">
+        </div>
+        入力内容：{{txt}} <br>
+        <hr>
+        <label for="male">
+            <input type="radio" id="male" value="male" v-model="gender">男
+        </label>
+        <label for="female">
+            <input type="radio" id="female" value="female" v-model="gender">女
+        </label><br>
+        選択結果：{{gender}}
+        <hr>
+        <label for="agree">
+            <input type="checkbox" id="agree" value="" v-model="isAgree">同意
+        </label><br>
+        同意か？{{isAgree}} <br>
+        <button :disabled="!isAgree">Next</button>
+        <hr>
+        <select name="" id="" v-model="size">
+            <option value="small">小型</option>
+            <option value="middle">中型</option>
+            <option value="large">大型</option>
+        </select><br>
+        選択結果：{{size}} <br>
+        <hr>
+        <select name="" id="" v-model="fruits" multiple>
+            <option value="banena">バナナ</option>
+            <option value="peah">桃</option>
+            <option value="watermelon">スイカ</option>
+            <option value="apple">リンゴ</option>
+            <option value="pear">梨</option>
+            <option value="orange">みかん</option>
+        </select><br>
+        選択結果：{{fruits}} <br>
+        <hr>
+
+    </div>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            txt : "",
+            gender: "male",
+            isAgree: false,
+            size: "middle",
+            fruits: [],
+        },
+        methods: {}
+     });
+    </script>
+</body>
+</html>

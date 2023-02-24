@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js数组的map，reduce，filter方法</title>
+</head>
+<body>
+<div id="app">
+    <h1 style="text-align: center;">{{title}}</h1>
+    <hr>
+    <div>
+        map()方法结果 -> 数组<br>
+        reduce()方法结果 -> 累计结果<br>
+        filter()方法结果 -> 数组<br><br>
+    </div>
+    <hr>
+    <h3>
+        <div>书籍列表↓</div>
+        <ul>
+            <li v-for="(book,index) in books">{{index+1}}. {{book.id}},{{book.name}},{{book.price}}</li>
+        </ul>
+    </h3>
+    <h3>计算结果↓</h3>
+    <div>书籍总价：{{totalPrice}}</div>
+    <div>书籍总价_es6：{{totalPrice_es6}}</div><br>
+    <div>书籍名列表</div>
+    <ul>
+        <li v-for="bname in bookNameList">{{bname}}</li>
+    </ul>
+    <div>书籍名列表_es6</div>
+    <ul>
+        <li v-for="bname in bookNameList_es6">{{bname}}</li>
+    </ul>
+    <div>书籍列表(price&gt;100)</div>
+    <ul>
+        <li v-for="(book,index) in specifiedBookList">{{index+1}}. {{book.id}},{{book.name}},{{book.price}}</li>
+    </ul>
+    <div>书籍列表_es6(price&lt;100)</div>
+    <ul>
+        <li v-for="(book,index) in specifiedBookList_es6">{{index+1}}. {{book.id}},{{book.name}},{{book.price}}</li>
+    </ul>
+</div>
+
+<script src='../vue.js'></script>
+<script>
+    const app = new Vue({
+        el : '#app',
+        data : {
+            title : 'JS-数组的map,reduce,filter方法',
+            books : [
+                {id : 110, name : 'Unix编程艺术', price : 119},
+                {id : 111, name : '代码大全', price : 105},
+                {id : 112, name : '深入理解计算机原理', price : 98},
+                {id : 113, name : '现代操作系统', price : 87}
+            ]
+        },
+        computed : {    /* 计算属性只会被調用一次，高效; */
+            totalPrice : function () {
+                // array.reduce(x, y)累计求和 x:上一次计算结果， y：当前数组成员
+                return this.books.reduce(function(preVal, curItem){
+                    console.log(preVal + ", " + curItem.price);
+                    return preVal + curItem.price;
+                },0);
+            },
+            totalPrice_es6 : function () {
+                return this.books.reduce((preVal, curItem) => preVal + curItem.price,0);
+            },
+            bookNameList : function () {
+                // array.map(x, y, z) 返回一个数组。x:当前数组成员  y：当前数组成员索引值， z：被遍历的目标数组
+                return this.books.map(function (curArr, curArrIndex, targetArr) {
+                    console.log(curArr, curArrIndex, targetArr);
+                    return curArr.name;
+                })
+
+            },
+            bookNameList_es6 : function () {
+                return this.books.map((curArr, curArrIndex, targetArr) => curArr.name);
+            },
+            specifiedBookList : function () {
+                // array.filter(x) 返回一个数组。 x:当前数组成员
+                return this.books.filter(function(curArr){
+                    console.log(curArr);
+                    return curArr.price > 100;
+                })
+            },
+            specifiedBookList_es6 : function () {
+                return this.books.filter((curArr) => curArr.price < 100);
+            },
+
+        }
+    });
+    
+</script>
+</body>
+</html>

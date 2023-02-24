@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <div>{{num}}</div>
+        <button @click="click(2)">+2</button>
+    </div>
+    <hr>
+    <div id ="app2">
+        <form action="/controller">
+            <div style="background-color: lightblue;" @click="divClick">
+                <button @click.stop="btn1Click">btn1</button>
+                <input type="submit" value="commit" @click.prevent="commitBtnClick"><br>
+                <input type="text" @keyup.enter="keyupHandler"><br>
+            </div>
+        </form>
+    </div>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            num : 0
+        },
+        methods: {
+            click(arg){
+                this.num+=arg;
+                console.log(event);
+            }
+        }
+     });
+     const vm2 = new Vue({
+        el: '#app2',
+        data: {
+            num : 0
+        },
+        methods: {
+            btn1Click(){
+                console.log("btn1Clicked");
+            },
+            divClick(){
+                console.log("divClicked");
+            },
+            commitBtnClick(){
+                console.log("commitBtnClicked");
+            },
+            keyupHandler(){
+                console.log("keyup");
+            }
+        }
+     });
+    </script>
+</body>
+</html>

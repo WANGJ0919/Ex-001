@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <div>TotalPrice: {{totalPrice}}</div>
+        <div>price &gt; 100 :</div>
+        <ul>
+            <li v-for="item in priceOver100">{{item}}</li>
+        </ul>
+        <ul>
+            <li v-for="name in namesShow">{{name}}</li>
+        </ul>
+    </div>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            books : [
+                {id: 110, name:'javaオブジェクト指向プログラミング', price: 109.00},
+                {id: 111, name:'Spring入門編', price: 87.00},
+                {id: 112, name:'ゼロからOracle勉強', price: 149.00},
+                {id: 113, name:'JavaSE8シルバー問題集', price: 136.00},
+            ],
+        },
+        computed: {
+            totalPrice() {
+                return this.books.reduce((pre,cur) => {
+                    return pre + cur.price
+                },0)
+            },
+            priceOver100(){
+                return this.books.filter((cur)=>{
+                    return cur.price > 100;
+                });
+
+            },
+            namesShow(){
+                return this.books.map((cur)=>{
+                    return cur.name;
+                });
+            }
+        },
+        methods: {}
+     });
+    </script>
+</body>
+</html>

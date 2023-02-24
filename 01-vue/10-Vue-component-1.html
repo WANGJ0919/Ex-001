@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app1">
+        <cpn1></cpn1>
+        <cpn2></cpn2>
+    </div>
+    <hr>
+    <div id ="app2">
+        <cpn1></cpn1>
+        <cpn2></cpn2>
+    </div>
+
+    <script>
+
+        const com1 = Vue.extend({
+            template : `
+                <div>
+                    <h2>コンポーネントタイトル</h2>
+                    <div>コンポーネントコンテンツ</div>
+                    <div>コンポーネントコンテンツ</div>
+                    <div>コンポーネントコンテンツ</div>        
+                </div>
+            `
+        });
+
+        const com2 = Vue.extend({
+            template : `
+                <div>
+                    <h2>コンポーネントタイトル2</h2>
+                    <div>コンポーネントコンテンツ2</div>
+                    <div>コンポーネントコンテンツ2</div>
+                    <div>コンポーネントコンテンツ2</div>        
+                </div>
+            `
+        });
+
+        Vue.component("cpn1", com1);
+
+     // VUEインスタンス宣言 => ViewModel
+     const vm1 = new Vue({
+        el: '#app1',
+        data: {},
+        methods: {}
+     });
+
+     const vm2 = new Vue({
+        el: '#app2',
+        data: {},
+        methods: {},
+        components: {
+            cpn2 : com2
+
+        }
+     });
+    </script>
+</body>
+</html>

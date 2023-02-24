@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        li{ list-style:none; }
+
+    </style>
+</head>
+<body>
+    <div id ="app">
+        <cpn1 :items_="items" :index="index" @select="select"></cpn1>
+        <cpn1 :items_="items" :index="index" @select="select"></cpn1>
+    </div>
+
+    <template id="cpn1">
+        <div>
+            <!-- <h3>cpn1-title</h3> -->
+            <div>
+                <button v-for="kind,idx in items_" @click="select(idx)">{{kind.name}}</button>
+            </div>
+            <cpn2 :items__="items_" :index="index"></cpn2>
+        </div>
+    </template>
+
+    <template id="cpn2">
+        <div>
+            <!-- <h3>cpn2-title</h3> -->
+            <ul>
+                <li v-for="i,idx in items__[index].contents">{{idx+1}}. {{i}}</li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+
+    const cpn2 = Vue.extend({
+        template : '#cpn2',
+        props : {
+            index : {},
+            items__ : {}
+        }
+    });
+
+     const cpn1 = Vue.extend({
+         template :'#cpn1',
+         props : {
+            index : {},
+            items_ : {}
+         },
+         components : {
+            cpn2
+         },
+         methods:{
+             select(idx){
+                 this.$emit("select", idx);
+             }
+         }
+     }); 
+
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            index : 0,
+            items : [
+                {
+                    name : 'PCパソコン',
+                    contents : ['ノート', 'デスクトップ', '小型デスク', '一体型デスク'],
+                },
+                {
+                    name : 'おもちゃ',
+                    contents : ['電子ねこ', 'ぬいぐるみ', 'ハローケイティ', 'コンパクト銃'],
+                },
+                {
+                    name : 'スポーツ・アウトドア',
+                    contents : ['フットボール', '卓球', 'テニス', '運動タオル'],
+                },
+                {
+                    name : 'ファッション',
+                    contents : ['ジャケット', 'ジーンズ', 'クーラビジ', 'カジュアル'],
+                }
+            ]
+        },
+        components :{
+            cpn1,
+        },
+        methods: {
+            select(idx){
+                this.index = idx;
+            }
+        }
+     });
+    </script>
+</body>
+</html>

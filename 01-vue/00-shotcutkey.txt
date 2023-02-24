@@ -1,0 +1,17 @@
+Ctrl + Shift + [   折叠光标所在行代码
+Ctrl + Shift + ]   展开光标所在行代码
+Ctrl + ,  打开设置
+Ctrl + j  打开/关闭控制台
+代码格式化:   Shift+Alt+F
+Ctrl + b	显示/隐藏侧边栏
+Ctrl + Shift + p	显示命令面板
+
+vscode-plugs:
+- Eclipse keymap
+- live preview
+- vetur
+- vue language features
+- japanese language pack for Visual Studio Code
+- document this
+- github copilot
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+            <span v-if="flg">
+                <label for="userid" >userid: </label>
+                <input type="text" placeholder="ユーザID" id="userid" key="uerid">
+            </span>
+            <span v-else>
+                <label for="mail">mail: </label>
+                <input type="text" placeholder="メールアドレス" id="mail" key="mail">
+            </span>
+            <button @click="flg=!flg">切替</button>
+    </div>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            flg : true,
+        },
+        methods: {}
+     });
+    </script>
+</body>
+</html>

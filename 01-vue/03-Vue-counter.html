@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <button v-on:click="num++">+</button>
+        <button @click="num--">-</button>
+        <br>
+        <button v-on:click="increment">+</button>
+        <button @click="decrement">-</button>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app', //挂载元素
+        data: {
+            num : 0
+        },
+        methods : {
+            increment : function(){
+                this.num++
+            },
+            decrement : function(){
+                if (this.num != 0) 
+                    this.num--
+            }
+
+        }
+        
+    });
+
+</script>
+</html>

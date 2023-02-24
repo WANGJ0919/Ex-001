@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <div>
+            <input type="text" v-model.lazy="txt">
+        </div>
+        入力内容(v-model.lazy)：{{txt}} <br>
+        <hr>
+        <div>
+            <input type="number" v-model.number="num">
+        </div>
+        入力内容(v-model.number)：{{num}} -> {{typeof num}}<br>
+        <hr>
+        <div>
+            <input type="text" v-model.trim="str">
+        </div>
+        入力内容(v-model.trim)：{{str}}<br>
+        <hr>
+
+    </div>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            txt : "",
+            num : 123,
+            str: "",
+        },
+        methods: {}
+     });
+    </script>
+</body>
+</html>

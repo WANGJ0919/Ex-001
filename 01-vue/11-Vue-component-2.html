@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <cpn-parent></cpn-parent>
+    </div>
+
+    <template id="parentTemplate">
+        <div>
+            <h3>親コンポーネンtitle</h3>
+            <div>親コンポーネンcontents</div>
+            <cpn-child></cpn-child>
+        </div>
+    </template>
+    <template id="childTemplate">
+        <div>
+            <h3>子コンポーネンtitle</h3>
+            <div>子コンポーネンcontents</div>
+        </div>
+    </template>
+    
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components:{
+            'cpn-parent' : {
+                template : '#parentTemplate',
+                components : {
+                    'cpn-child' : {
+                        template : '#childTemplate'
+                    }
+                }
+            }
+        }
+     });
+    </script>
+</body>
+</html>

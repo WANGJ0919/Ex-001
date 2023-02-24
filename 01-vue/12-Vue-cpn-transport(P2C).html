@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <h3>親Title</h3>
+        <cpn :msg_from_oya="msg"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div style="background-color: yellow;">子エリア
+            <h3>子コンポーネントTitle</h3>
+            <div>{{msg_}}</div>
+            <div>{{msg_from_oya}}</div>
+        </div>
+    </template>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            msg : 'メッセージ_親',
+        },
+        components : {
+            cpn : {
+                template:'#cpn',
+                data(){
+                    return {
+                        msg_ : 'メッセージ_子'
+                    }
+                },
+                props : {
+                    msg_from_oya : {},
+                    prop2 : {},
+                }
+            }
+
+        }
+     });
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        table{
+            border: 1px solid #e9e9e9;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th, td{
+            padding: 8px 16px;
+            border: 1px solid #e9e9e9;
+            text-align: center;
+        }
+        th {
+            background-color: #f7f7f7;
+            color: #5c6b77;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+    <div id ="app">
+        <div v-if="books.length">
+            <table>
+                <tr><th></th><th>name</th><th>release-date</th><th>price</th><th>count</th><th>action</th></tr>
+                <tr v-for="item,idx in books"><td>{{idx+1}}</td><td>{{item.name}}</td><td>{{item.realse}}</td><td>{{item.price | priceformated}}</td>
+                    <td><button @click="sub(idx)" :disabled="item.count<2">-</button> {{item.count}} <button @click="add(idx)">+</button></td><td><button @click="remove(idx)">remove</button></td>
+                </tr>
+            </table>
+            <div>total:{{totalPrice | priceformated}}</div>
+        </div>
+        <div v-else>cart is empty!</div>
+    </div>
+
+    <script>
+     // VUEインスタンス宣言 => ViewModel
+     const vm = new Vue({
+        el: '#app',
+        data: {
+            books : [
+                {id:1001, name : 'Book1', realse : '2019-01-25', price : 86.90, count : 1},
+                {id:1002, name : 'Book2', realse : '2021-03-29', price : 93.75, count : 1},
+                {id:1003, name : 'Book3', realse : '2018-05-11', price : 140.50, count : 1},
+                {id:1004, name : 'Book4', realse : '2019-07-12', price : 111.25, count : 1},
+            ]
+        },
+        filters : {
+            priceformated (price){
+                return "￥" + price.toFixed(2);
+            }
+        },
+        computed:{
+            totalPrice: function () {
+                return this.books.reduce((pre,cur)=>{
+                    return pre + cur.price * cur.count;
+                },0);
+            }
+        },
+        methods: {
+            add (idx){
+                this.books[idx].count++;
+            },
+            sub (idx){
+                // if (this.books[idx].count == 1) event.targetSrc;
+                this.books[idx].count--;
+                
+            },
+            remove (idx){
+                this.books.splice(idx,1);
+            },
+        }
+     });
+    </script>
+</body>
+</html>
